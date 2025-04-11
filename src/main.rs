@@ -1,5 +1,5 @@
 use std::net::{TcpListener,TcpStream};
-use std::io::Read;
+use std::io::{Read,Write};
 
 fn handle_client(mut stream: TcpStream) {
     let mut buffer = [0u8; 512];
@@ -10,6 +10,16 @@ fn handle_client(mut stream: TcpStream) {
             Ok(n) => {
                 println!("Received {} bytes:", n);
                 println!("{}", String::from_utf8_lossy(&buffer[..n]));
+
+                let body = "<h1>Hello from Rust!</h1>";
+
+                let response = format!(
+                    "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nContent-Type: text/html\r\n\r\n{}",
+                    body.len(),
+                    body
+                );
+
+                stream.write_all(response.as_bytes()).expect("Failed to write to stream");
             }
             Err(e) => {
                 eprintln!("Failed to read from stream: {}", e);
