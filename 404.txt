@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>404 - Not Found</title>
+    <meta charset="UTF-8">
+    <title>404 Not Found - My Rust Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #fef2f2;
+            font-family: 'Segoe UI', sans-serif;
+            color: #b91c1c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        p {
+            font-size: 1.2rem;
+        }
+        a {
+            color: #7f1d1d;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>404 - Page Not Found</h1>
     <p>Oops! The page you're looking for doesn't exist.</p>
-    <a href="/home">Go Home</a>
+    <a href="/index">Back to Home</a>
 </body>
 </html>

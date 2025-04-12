@@ -1,11 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>About - My Rust Server</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --bg-color: #f9fafb;
+            --primary-color: #4f46e5;
+            --text-color: #111827;
+            --link-hover: #4338ca;
+        }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg-color); color: var(--text-color); display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: var(--primary-color); color: white; padding: 1rem; text-align: center; }
+        nav a { color: white; margin: 0 1rem; text-decoration: none; font-weight: bold; }
+        nav a:hover { color: var(--link-hover); }
+        main { flex: 1; padding: 2rem; text-align: center; }
+        footer { text-align: center; padding: 1rem; background: #e5e7eb; font-size: 0.9rem; }
+        @media (max-width: 600px) { nav a { display: block; margin: 0.5rem 0; } }
+    </style>
 </head>
 <body>
-    <h1>About This Project</h1>
-    <p>This web server is built from scratch using Rust!</p>
-    <a href="/home">Back to Home</a>
+    <header>
+        <h1>About Us</h1>
+        <nav>
+            <a href="/index">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <p>This Rust web server is a fun project built from scratch using low-level networking features.</p>
+        <button onclick="alert('Rust is awesome!')">Learn More</button>
+    </main>
+    <footer>
+        &copy; 2025 My Rust Server. All rights reserved.
+    </footer>
 </body>
 </html>
