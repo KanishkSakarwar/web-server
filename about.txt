@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - My Rust Server</title>
+</head>
+<body>
+    <h1>About This Project</h1>
+    <p>This web server is built from scratch using Rust!</p>
+    <a href="/home">Back to Home</a>
+</body>
+</html>

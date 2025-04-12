@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact - My Rust Server</title>
+</head>
+<body>
+    <h1>Contact</h1>
+    <p>You can reach me at krishshlokh@gmail.com</p>
+    <a href="/home">Back to Home</a>
+</body>
+</html>
