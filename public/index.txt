@@ -64,6 +64,35 @@
             margin-bottom: 2rem;
         }
 
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        input[type="url"] {
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+        }
+
+        button {
+            padding: 0.75rem;
+            font-size: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--link-hover);
+        }
+
         footer {
             text-align: center;
             padding: 1rem;
@@ -95,19 +124,16 @@
 </header>
 
 <main>
-    <p>This is the homepage.</p>
-    <button onclick="showAlert()">Click Me</button>
+    <p>Enter a URL to shorten:</p>
+    <form action="/shorten" method="POST">
+        <input type="url" name="url" placeholder="https://example.com" required>
+        <button type="submit">Shorten URL</button>
+    </form>
 </main>
 
 <footer>
     &copy; 2025 My Rust Server. All rights reserved.
 </footer>
-
-<script>
-    function showAlert() {
-        alert("Thanks for visiting My Rust Web Server!");
-    }
-</script>
 
 </body>
 </html>

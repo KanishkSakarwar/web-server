@@ -1,43 +1,39 @@
 use std::net::TcpStream;
 use std::io::{Read,Write};
-use std::collections::HashMap;
-use std::fs::OpenOptions;
-use urlencoding::decode;
-use url::form_urlencoded;
 
-pub fn decode_form_body(body: &str) -> HashMap<String, String> {
-    form_urlencoded::parse(body.as_bytes())
-        .into_owned()
-        .collect()
-}
-
-pub fn save_to_json_file(data: &HashMap<String, String>, file_path: &str) {
-    let json = serde_json::to_string_pretty(&data).unwrap();
-
-    let mut file = OpenOptions::new()
-        .append(true)
-        .create(true)
-        .open(file_path)
-        .unwrap();
-
-    writeln!(file, "{}", json).expect("Failed to write JSON to file");
+pub fn render_shortened_page(code: &str,mut stream: TcpStream){
+    let html = std::fs::read_to_string("public/shorten.txt").unwrap_or_else(|_| "<h1>File not found</h1>".to_string());
+    let short_url = format!("http://localhost:8080/{}", code);
+    let html = html.replace("{short_url}", &short_url);
+    let response = format!(
+        "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nContent-Type: text/html\r\n\r\n{}",
+        html.len(),
+        html
+    );
+    stream.write_all(response.as_bytes()).expect("Failed to write to stream");
 }
 
 pub fn open_page(path: &str,mut stream: TcpStream){
     let kan = match path {
-        "/about" => "about.txt",
-        "/contact" => "contact.txt",
-        "/index" | "/" | "/home" => "index.txt",
+        "/about" => "public/about.txt",
+        "/contact" => "public/contact.txt",
+        "/index" | "/" | "/home" => "public/index.txt",
+        "/shorten"  => "public/shorten.txt",
         _ => "404.txt",
     };
-    let body = std::fs::read_to_string(kan).unwrap_or_else(|_| "<h1>File not found</h1>".to_string());
+    if path == "/shorten" {
 
-    let response = format!(
-        "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nContent-Type: text/html\r\n\r\n{}",
-        body.len(),
-        body
-    );
-    stream.write_all(response.as_bytes()).expect("Failed to write to stream");
+    }
+    else{
+        let body = std::fs::read_to_string(kan).unwrap_or_else(|_| "<h1>File not found</h1>".to_string());
+
+        let response = format!(
+            "HTTP/1.1 200 OK\r\nContent-Length: {}\r\nContent-Type: text/html\r\n\r\n{}",
+            body.len(),
+            body
+        );
+        stream.write_all(response.as_bytes()).expect("Failed to write to stream");
+    }
 }
 
 pub fn get_response(mut stream: TcpStream) -> (String, String, String) {

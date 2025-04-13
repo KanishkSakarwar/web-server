@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shortened URL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .short-url-box {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .short-url {
+            margin-right: 1rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .copy-btn {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.3rem;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #4338ca;
+        }
+
+        #copied-msg {
+            margin-top: 1rem;
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Your Shortened URL</h1>
+    <div class="short-url-box">
+        <span id="shortUrl" class="short-url">{short_url}</span>
+        <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+    </div>
+    <div id="copied-msg">Copied to clipboard!</div>
+
+    <script>
+        function copyToClipboard() {
+            const url = document.getElementById("shortUrl").textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const msg = document.getElementById("copied-msg");
+                msg.style.display = "block";
+                setTimeout(() => {
+                    msg.style.display = "none";
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
