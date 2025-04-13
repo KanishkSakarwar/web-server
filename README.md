@@ -17,7 +17,7 @@ This is a simple **URL shortener** web server built with **Rust**. The server al
 
 ## Setup:
 1. Clone the repository:  
-   `git clone https://github.com/your-username/your-repo-name.git`
+   `git clone https://github.com/KanishkSakarwar/url-shortener-web-server.git`
 2. Install Rust and dependencies (if not already installed).
 3. Run the server:  
    `cargo run`
